@@ -1,7 +1,9 @@
 .App-header {
   text-align: center;
-  height: 150px;
+  height: 60px;
   padding: 20px;
+  border-bottom: 1px solid black;
+  margin-bottom: 20px;
 }
 
 .App-title {
@@ -9,23 +11,41 @@
 }
 
 .tile {
-  height: 150px;
-  width: 150px;
+  height: 180px;
+  width: 180px;
   margin: 10px;
   background: lightyellow;
   float: left;
-  font-size: 11px;
+  font-size: 0.8em;
   text-align: left;
+}
+
+.categoryName {
+  color: blue;
+}
+
+.button {
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin: 0 10px;
 }
 
 .newNoteButton {
   background: darkblue;
   color: white;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  margin: 0 10px;
-  padding: 10px;
+  font-size: 1.1em;
+}
+
+.categoryButton {
+  background: lightblue;
+  font-size: 0.95em;
+  padding: 5px;
+}
+
+.selected {
+  background: darkblue;
+  color: white;
 }
 
 .input {
@@ -58,4 +78,8 @@ textarea {
 
 .tile:hover .deleteButton {
   visibility: visible;
+}
+
+.categoryMenu {
+  margin-bottom: 20px;
 }

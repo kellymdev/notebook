@@ -6,6 +6,7 @@ class NoteForm extends Component {
     super(props)
     this.state = {
       title: this.props.note.title,
+      category: this.props.note.category_name,
       body: this.props.note.body
     }
   }
@@ -18,6 +19,7 @@ class NoteForm extends Component {
   handleBlur = () => {
     const note = {
       title: this.state.title,
+      category: this.state.category,
       body: this.state.body
     }
 
@@ -27,7 +29,6 @@ class NoteForm extends Component {
         note: note
       })
     .then(response => {
-      console.log(response)
       this.props.updateNote(response.data)
     })
     .catch(error => console.log(error))

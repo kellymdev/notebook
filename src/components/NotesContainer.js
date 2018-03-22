@@ -3,22 +3,30 @@ import axios from 'axios'
 import update from 'immutability-helper'
 import Note from './Note'
 import NoteForm from './NoteForm'
+import Category from './Category'
 
 class NotesContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
       notes: [],
+      categories: [],
       editingNoteId: null,
-      notification: ''
+      notification: '',
+      selectedCategory: null
     }
   }
 
   componentDidMount() {
     axios.get('http://localhost:3001/api/v1/notes.json')
     .then(response => {
-      console.log(response)
       this.setState({notes: response.data})
+    })
+    .catch(error => console.log(error))
+
+    axios.get('http://localhost:3001/api/v1/categories.json')
+    .then(response => {
+      this.setState({categories: response.data})
     })
     .catch(error => console.log(error))
   }
@@ -75,10 +83,36 @@ class NotesContainer extends Component {
     .catch(error => console.log(error))
   }
 
+  handleCategoryClick = (id) => {
+    axios.get(`http://localhost:3001/api/v1/categories/${id}`)
+    .then(response => {
+      this.setState({
+        notes: response.data,
+        selectedCategory: id
+      })
+    })
+    .catch(error => console.log(error))
+  }
+
   render() {
     return (
       <div>
-        <button className = "newNoteButton"
+        <div className="categoryMenu">
+          {this.state.categories.map((category) => {
+            if(this.state.selectedCategory === category.id) {
+              return(
+                <button className="categoryButton button selected" key={category.id}>{category.name}
+                </button>
+              )
+            } else {
+              return(
+                <Category category={category} key={category.id} onClick={this.handleCategoryClick} />
+              )
+          }
+          })}
+        </div>
+
+        <button className = "newNoteButton button"
           onClick={this.addNewNote} >
           New Note
         </button>
