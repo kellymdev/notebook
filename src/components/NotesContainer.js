@@ -65,6 +65,16 @@ class NotesContainer extends Component {
       () => { this.title.focus() })
   }
 
+  deleteNote = (id) => {
+    axios.delete(`http://localhost:3001/api/v1/notes/${id}`)
+    .then(response => {
+      const noteIndex = this.state.notes.findIndex(x => x.id === id)
+      const notes = update(this.state.notes, { $splice: [[noteIndex, 1]]})
+      this.setState({notes: notes})
+    })
+    .catch(error => console.log(error))
+  }
+
   render() {
     return (
       <div>
@@ -88,7 +98,7 @@ class NotesContainer extends Component {
               )
             } else {
               return(
-                <Note note={note} key={note.id} onClick={this.enableEditing} />
+                <Note note={note} key={note.id} onClick={this.enableEditing} onDelete={this.deleteNote} />
               )
             }
           })}
