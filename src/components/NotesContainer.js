@@ -9,7 +9,8 @@ class NotesContainer extends Component {
     super(props)
     this.state = {
       notes: [],
-      editingNoteId: null
+      editingNoteId: null,
+      notification: ''
     }
   }
 
@@ -44,6 +45,21 @@ class NotesContainer extends Component {
     .catch(error => console.log(error))
   }
 
+  updateNote = (note) => {
+    const noteIndex = this.state.notes.findIndex(x => x.id === note.id)
+    const notes = update(this.state.notes, {
+      [noteIndex]: { $set: note }
+    })
+    this.setState({
+      notes: notes,
+      notification: 'All changes saved'
+    })
+  }
+
+  resetNotification = () => {
+    this.setState({notification: ''})
+  }
+
   render() {
     return (
       <div>
@@ -52,11 +68,15 @@ class NotesContainer extends Component {
           New Note
         </button>
 
+        <span className="notification">
+          {this.state.notification}
+        </span>
+
         <div>
           {this.state.notes.map((note) => {
             if(this.state.editingNoteId === note.id) {
               return(
-                <NoteForm note={note} key={note.id} />
+                <NoteForm note={note} key={note.id} updateNote={this.updateNote} resetNotification={this.resetNotification} />
               )
             } else {
               return(
