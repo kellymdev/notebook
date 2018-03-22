@@ -60,6 +60,11 @@ class NotesContainer extends Component {
     this.setState({notification: ''})
   }
 
+  enableEditing = (id) => {
+    this.setState({editingNoteId: id},
+      () => { this.title.focus() })
+  }
+
   render() {
     return (
       <div>
@@ -76,11 +81,14 @@ class NotesContainer extends Component {
           {this.state.notes.map((note) => {
             if(this.state.editingNoteId === note.id) {
               return(
-                <NoteForm note={note} key={note.id} updateNote={this.updateNote} resetNotification={this.resetNotification} />
+                <NoteForm note={note} key={note.id}
+                  updateNote={this.updateNote}
+                  titleRef= {input => this.title = input}
+                  resetNotification={this.resetNotification} />
               )
             } else {
               return(
-                <Note note={note} key={note.id} />
+                <Note note={note} key={note.id} onClick={this.enableEditing} />
               )
             }
           })}
