@@ -8,6 +8,7 @@ class NoteForm extends Component {
       title: this.props.note.title,
       category_id: this.props.note.category_id,
       body: this.props.note.body,
+      image_url: this.props.note.image_url,
       categories: []
     }
   }
@@ -29,7 +30,8 @@ class NoteForm extends Component {
     const note = {
       title: this.state.title,
       category_id: this.state.category_id,
-      body: this.state.body
+      body: this.state.body,
+      image_url: this.state.image_url
     }
 
     axios.put(
@@ -49,19 +51,15 @@ class NoteForm extends Component {
         <form onBlur={this.handleBlur}>
           <input className="input" type="text" name="title" placeholder="Enter a title" value={this.state.title} onChange={this.handleInput} ref={this.props.titleRef} />
 
-          <select name="category_id" onChange={this.handleInput}>
+          <select name="category_id" onChange={this.handleInput} value={this.state.category_id}>
             {this.state.categories.map((category) => {
-              if(this.props.category === category.id) {
-                return(
-                  <option value={category.id} key={category.id} selected>{category.name}</option>
-                )
-              } else {
-                return(
-                  <option value={category.id} key={category.id}>{category.name}</option>
-                )
-              }
+              return (
+                <option value={category.id} key={category.id}>{category.name}</option>
+              )
             })}
           </select>
+
+          <input className="input" type="text" name="image_url" placeholder="Enter an image url" value={this.state.image_url} onChange={this.handleInput} ref={this.props.imageUrlRef} />
 
           <textarea className="input" name="body" placeholder="Enter your note" value={this.state.body} onChange={this.handleInput} >
           </textarea>
