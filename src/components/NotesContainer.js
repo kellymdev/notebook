@@ -37,7 +37,7 @@ class NotesContainer extends Component {
       { note:
         {
           title: '',
-          category_id: '',
+          category_id: this.state.selectedCategory || 1,
           image_url: '',
           body: ''
         }
