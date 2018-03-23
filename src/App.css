@@ -1,8 +1,20 @@
+/* Colours */
+/* brown: #7A4F47 */
+/* pale brown: #F0DDD5 */
+/* pale grey: #FBF3ED */
+/* medium brown: #D7B7A7 */
+/* medium blue: #AEE0FF */
+
+body {
+  background: #FBF3ED;
+}
+
 .App-header {
+  color: #7A4F47;
   text-align: center;
   height: 60px;
   padding: 20px;
-  border-bottom: 1px solid black;
+  border-bottom: 3px solid #7A4F47;
   margin-bottom: 20px;
 }
 
@@ -11,17 +23,18 @@
 }
 
 .tile {
-  height: 180px;
-  width: 180px;
+  height: 200px;
+  width: 200px;
   margin: 10px;
-  background: lightyellow;
+  background: #F0DDD5;
   float: left;
   font-size: 0.8em;
   text-align: left;
+  padding: 10px;
 }
 
 .categoryName {
-  color: blue;
+  color: #7A4F47;
 }
 
 .button {
@@ -32,19 +45,19 @@
 }
 
 .newNoteButton {
-  background: darkblue;
+  background: #7A4F47;
   color: white;
   font-size: 1.1em;
 }
 
 .categoryButton {
-  background: lightblue;
+  background: #AEE0FF;
   font-size: 0.95em;
   padding: 5px;
 }
 
 .selected {
-  background: darkblue;
+  background: #42647A;
   color: white;
 }
 
@@ -53,8 +66,9 @@
   background: none;
   outline: none;
   margin-top: 10px;
-  width: 140px;
+  width: 180px;
   font-size: 11px;
+  padding: 2px;
 }
 
 .input:focus {
@@ -82,4 +96,9 @@ textarea {
 
 .categoryMenu {
   margin-bottom: 20px;
+}
+
+img {
+  max-width: 180px;
+  max-height: 100px;
 }

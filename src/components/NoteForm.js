@@ -51,7 +51,7 @@ class NoteForm extends Component {
         <form onBlur={this.handleBlur}>
           <input className="input" type="text" name="title" placeholder="Enter a title" value={this.state.title} onChange={this.handleInput} ref={this.props.titleRef} />
 
-          <select name="category_id" onChange={this.handleInput} value={this.state.category_id}>
+          <select className="input" name="category_id" onChange={this.handleInput} value={this.state.category_id}>
             {this.state.categories.map((category) => {
               return (
                 <option value={category.id} key={category.id}>{category.name}</option>
